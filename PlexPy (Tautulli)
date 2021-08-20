@@ -1,0 +1,30 @@
+## Auth block - Organizr ##
+location ~ ^/auth-(.*) {
+    ## Has to be local ip or local DNS name
+    proxy_pass http://organizr:80/api/v2/auth?group=$1;
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+
+}
+
+## Auth request for app  - Plexpy ##
+auth_request /auth-0;
+
+## Exclusions ##
+location /api {
+    auth_request off;
+    proxy_pass http://plexpy:8181/api;
+
+}
+
+location /newsletter {
+    auth_request off;
+    proxy_pass http://plexpy:8181/newsletter;
+
+}
+
+location /image {
+    auth_request off;
+    proxy_pass http://plexpy:8181/image;
+
+}
