@@ -1,0 +1,42 @@
+## Auth block - Organizr ##
+location ~ ^/auth-(.*) {
+    ## Has to be local ip or local DNS name
+    proxy_pass http://organizr:80/api/v2/auth?group=$1;
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+
+}
+
+## Auth request for app  - Qbittorrent ##
+auth_request /auth-0;
+
+## Exclusions ##
+location /api {
+    auth_request off;
+    proxy_pass http://qbittorrent:8080/api;
+
+}
+
+location /command {
+    auth_request off;
+    proxy_pass http://qbittorrent:8080/command;
+
+}
+
+location /query {
+    auth_request off;
+    proxy_pass http://qbittorrent:8080/query;
+
+}
+
+location /login {
+    auth_request off;
+    proxy_pass http://qbittorrent:8080/login;
+
+}
+
+location /sync {
+    auth_request off;
+    proxy_pass http://qbittorrent:8080/sync;
+
+}
