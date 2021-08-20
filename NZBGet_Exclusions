@@ -10,6 +10,7 @@ location ~ ^/auth-(.*) {
 ## Auth request for app  - NZBGet ##
 auth_request /auth-0; 
 
+## Exclusions ##
 location /nzbget/xmlrpc {
     auth_request off;
     proxy_pass http://nzbget:6789/nzbget/xmlrpc;
