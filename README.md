@@ -1,6 +1,6 @@
 These templates will add Organizr Auth to a Cloudbox setup, offering Basic Auth login and excluding required API paths.
 
-Created a file in /opt/nginx-proxy/vhost.d titled appname.domain.tld_location and fill the contents of the relevant application.
+Create a file in /opt/nginx-proxy/vhost.d titled appname.domain.tld_location (where you would access this app in your browser) and fill the contents from the relevant template.
 
 For any applications not listed, the generic templates should provide a good basis.
 If the application does not support Basic Auth, use Generic_No_Exlusions
