@@ -1,0 +1,11 @@
+## Auth block - Organizr ##
+location ~ ^/auth-(.*) {
+    ## Has to be local ip or local DNS name
+    proxy_pass http://organizr:80/api/v2/auth?group=$1;
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+
+}
+
+## Auth request for app  ##
+auth_request /auth-0; # Replace 0 with preferred Organizr role, see https://docs.organizr.app/books/setup-features/page/serverauth
