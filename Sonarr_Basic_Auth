@@ -1,0 +1,22 @@
+## Auth block - Organizr ##
+location ~ ^/auth-(.*) {
+    ## Has to be local ip or local DNS name
+    proxy_pass http://organizr:80/api/v2/auth?group=$1;
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+
+}
+
+## Auth request for app  - Sonarr ##
+auth_request /auth-0;
+
+## Login details for app ##
+proxy_set_header Authorization "Basic <base64 encoded user:pass>";
+proxy_pass_header Authorization;
+
+## Exclusions ##
+location /api {
+    auth_request off;
+    proxy_pass http://sonarr:8989/api;
+
+}
