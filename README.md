@@ -8,3 +8,6 @@ If it does, use Generic_Basic_Auth to pass through your login details (You can c
 
 If the app does not need to communicate with other apps these will be sufficient.
 If the app needs to communicate with other apps, write exclusion blocks based upon existing templates such as Sonarr
+
+After applying a template, you will need to restart both nginx-proxy and the app in question.
+If you screw up, particularly making your own file, edit the file to be blank but leave it in place.
